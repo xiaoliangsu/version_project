@@ -1,0 +1,39 @@
+.func(@height, @width) {
+  .layout {
+    // 面包屑容器
+    .breadcrumb {
+      padding: 1% 2% 0;
+    }
+    // 页面内容
+    .content {
+      min-height: @height * 0.90;
+      overflow: hidden;
+      border-radius: 4px;
+    }
+    .content-small{
+      min-height: @height * 0.72;
+      overflow: hidden;
+      border-radius: 4px;
+    }
+    // 页面脚标
+    .footer {
+      text-align: center;
+      padding: 10px 0 20px;
+    }
+
+  }
+
+}
+// 默认css
+.func(800px, 1200px);
+
+// 响应式css
+@media (max-width: 2000px) {
+  .func(1050px, 2000px);
+}
+@media (max-width: 1400px) {
+  .func(800px, 1400px);
+}
+@media (max-width: 1000px) {
+  .func(800px, 1000px);
+}

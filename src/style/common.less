@@ -1,0 +1,148 @@
+
+// 全局样式
+.commonStyle(@height, @width) {
+  .ivu-table-cell {
+    padding: 0 10px;
+  }
+  // tag-dot支持文本省略
+  .ivu-tag-dot {
+    max-width: 100%;
+  }
+  // 响应式宽度
+  .col-width-4 {
+    .col-width(4, @width);
+  }
+  .col-width-6 {
+    .col-width(6, @width);
+  }
+  .col-width-7 {
+    .col-width(7, @width);
+  }
+  .col-width-8 {
+    .col-width(8, @width);
+  }
+  .col-width-9 {
+    .col-width(9, @width);
+  }
+  .col-width-10 {
+    .col-width(10, @width);
+  }
+  .col-width-13 {
+    .col-width(13, @width);
+  }
+  .col-width-15 {
+    .col-width(15, @width);
+  }
+  // 响应式高度
+  .col-height-2 {
+    height: @height / 2;
+  }
+  .col-height-3 {
+    height: @height / 3;
+  }
+  .col-height-4 {
+    height: @height / 4;
+  }
+  .col-height-6 {
+    height: @height / 6;
+  }
+  .header {
+    height: 60px;
+    .ivu-menu {
+      box-shadow: 0 3px 4px 0 rgba(0,0,0,.14), 0 3px 3px -2px rgba(0,0,0,.12), 0 1px 8px 0 rgba(0,0,0,.2);
+      position: fixed;
+      width: 100%;
+    }
+  }
+}
+
+// 全局字体
+.commonFont(@fontSize) {
+  p {
+    font-family: "So urce Sans Pro", sans-serif;
+  }
+  a {
+    font-size:@fontSize - 2;
+  }
+  .ivu-card {
+    margin: 10px;
+    height: 100%;
+    .ivu-card-head p {
+      font-family: "So urce Sans Pro", sans-serif;
+      font-size: @fontSize;
+    }
+    .ivu-card-body {
+      height: calc(~'100% - 51px');
+    }
+    .sub-title {
+      font-size:@fontSize - 2;
+      font-weight:400;
+      margin-left:10px;
+    }
+  }
+  .ivu-modal .ivu-modal-header .ivu-modal-header-inner {
+    color: #656565;
+    font-family: "So urce Sans Pro", sans-serif;
+    font-size: @fontSize;
+  }
+  .titled {
+    font-weight: 700;
+    margin-bottom: 1%;
+    display: flex;
+  }
+  .box-border {
+    border: 0 solid #e4e6eb;
+    border-left-color: #5cadff;
+    border-left-width: .25rem;
+    border-radius: .25rem;
+    padding: 0 1rem;
+  }
+  .max-text {
+    font-size: @fontSize + 10;
+  }
+  .mid-text {
+    font-size: @fontSize;
+  }
+  .min-text {
+    font-size: @fontSize - 2;
+  }
+}
+
+// 文本省略效果
+.ellipsis-text {
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+
+.col-width(@num, @width) {
+  width: @width / @num;
+}
+
+// 默认css
+.commonStyle(800px, 1400px);
+.commonFont(14px);
+
+
+// 响应式css
+@media (max-width: 2000px) {
+  .main, .v-transfer-dom .ivu-modal, .ivu-message-notice {
+    .commonStyle(1050px, 2000px);
+    .commonFont(16px);
+
+  }
+}
+@media (max-width: 1400px) {
+  .main, .v-transfer-dom .ivu-modal, .ivu-message-notice {
+    .commonStyle(800px, 1400px);
+    .commonFont(14px);
+
+  }
+}
+@media (max-width: 1000px) {
+  .main, .v-transfer-dom .ivu-modal, .ivu-message-notice {
+    .commonStyle(800px, 1000px);
+    .commonFont(14px);
+
+  }
+}

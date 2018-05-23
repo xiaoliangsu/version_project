@@ -1,0 +1,3 @@
+export const SET_SITE_TOKEN='SET_SITE_TOKEN';
+export const SET_SITE_NAME='SET_SITE_NAME';
+export const SET_SITE_LOCATION='SET_SITE_LOCATION';
