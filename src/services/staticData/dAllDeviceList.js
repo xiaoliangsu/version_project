@@ -104,6 +104,27 @@ export const deviceColumn = {
               }, '告警统计')
             ]);
             break;
+          case "4":
+            return h('div', [
+              h('Button', {
+                props: {
+                  type: 'primary',
+                  size: 'small',
+                  loading: false
+                },
+                on: {
+                  click:   () => {
+                    router.push({
+                      path: "ErrorData",
+                      query:{
+                        "assignToken":params.row.assignToken
+                      }
+                    });
+                  }
+                }
+              }, '停用统计')
+            ]);
+            break;
 
           default:
             return h('div', [

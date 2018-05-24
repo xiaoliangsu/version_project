@@ -9,10 +9,10 @@
     <Row>
       <Card>
         <Row>
-          <v-Form :data='historyfilter' @onSubmit='submitForm'/>
+          <v-Form :data='errorfilter' @onSubmit='submitForm'/>
         </Row>
         <Row class="margin-top-10">
-          <Table :loading="loading" :columns="warnTable.columns" :data="alertList"></Table>
+          <Table :loading="loading" :columns="errorTable.columns" :data="alertList"></Table>
           <div style="float: right;">
             <Page
               :total="total"
@@ -33,12 +33,12 @@
 
   import utils from '../../utils/utils.js';
   import vForm from '@/components/vForm.vue';
-  import {warnTable,historyfilter} from '@/services/staticData/dHistory.js';
+  import {errorTable,errorfilter} from '@/services/staticData/dHistory.js';
   export default {
     data() {
       return {
-        historyfilter,
-        warnTable,
+        errorfilter,
+        errorTable,
         alertList: [],
         siteList: [],
         chooseSite: '',
@@ -76,7 +76,7 @@
           "type":'engine.overheat'
         };
         let data = {
-          url: 'history/getStartEndAlert',
+          url: 'history/getStartEndError',
           params: params,
           method: 'get',
           baseUrl: 'alert'
@@ -100,7 +100,7 @@
           "type":formData.type,
         };
         let data = {
-          url: 'history/getStartEndAlert',
+          url: 'history/getStartEndError',
           params: params,
           method: 'get',
           baseUrl: 'alert'

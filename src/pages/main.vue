@@ -123,7 +123,7 @@
               历史数据
             </template>
             <MenuItem name="allDeviceList-3"><Icon type="settings"></Icon>告警统计</MenuItem>
-            <MenuItem name="allDeviceList-2"><Icon type="settings"></Icon>停用统计</MenuItem>
+            <MenuItem name="allDeviceList-4"><Icon type="settings"></Icon>停用统计</MenuItem>
             <MenuItem name="siteList-2"><Icon type="settings"></Icon>运行状态监控</MenuItem>
           </Submenu>
         </Menu>

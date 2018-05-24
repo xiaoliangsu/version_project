@@ -20,7 +20,8 @@ const DeviceTemper = r => require.ensure([], () => r(require('@/pages/temper/dev
 const DevicePa = r => require.ensure([], () => r(require('@/pages/devicePa/devicePa.vue')), 'DevicePa');
 const RunStatus = r => require.ensure([], () => r(require('@/pages/deviceStatus/runStatus.vue')), 'RunStatus');
 const DeviceDetail = r => require.ensure([], () => r(require('@/pages/deviceDetail/deviceDetail.vue')), 'DeviceDetail');
-const WarnData = r => require.ensure([], () => r(require('@/pages/historyData/WarnData.vue')), 'WarnData');
+const WarnData = r => require.ensure([], () => r(require('@/pages/historyData/warnData.vue')), 'WarnData');
+const ErrorData = r => require.ensure([], () => r(require('@/pages/historyData/errorData.vue')), 'ErrorData');
 
 export const routers = [{
   path:'/',
@@ -92,6 +93,11 @@ export const routers = [{
     name: 'warnData',
     meta: {label: '告警统计'},
     component: WarnData,
+  },{
+    path: '/errorData',
+    name: 'errorData',
+    meta: {label: '停用统计'},
+    component: ErrorData,
   },{
     path: '/test',
     name: 'test',

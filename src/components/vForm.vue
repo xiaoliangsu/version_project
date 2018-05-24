@@ -39,6 +39,7 @@
           <component
             :allProps="item"
             :is="item.type"
+            :op="options"
             :value="formData">
           </component>
         </br>
@@ -69,13 +70,13 @@
   };
 
   let DatePicker = {
-    props: ['allProps', 'value'],
+    props: ['allProps', 'value','op'],
     computed: {
       type() {
         return this.allProps.showType ? this.allProps.showType : 'daterange';
       }
     },
-    template: '<DatePicker :type="type" :options="allProps.options" v-model="value[allProps.name]" placement="bottom" :size="allProps.size" placeholder="请选择日期..." style="width: 200px"> </DatePicker>'
+    template: '<DatePicker type="daterange" :options="op" v-model="value[allProps.name]" placement="bottom" :size="allProps.size" placeholder="请选择日期..." style="width: 200px"> </DatePicker>'
   };
 
 
@@ -94,7 +95,38 @@
       return {
         formData: {},
         ruleValidate: this.data.rules,
-        form:[]
+        form:[],
+        options: {
+          shortcuts: [
+            {
+              text: '1 week',
+              value () {
+                const end = new Date();
+                const start = new Date();
+                start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+                return [start, end];
+              }
+            },
+            {
+              text: '1 month',
+              value () {
+                const end = new Date();
+                const start = new Date();
+                start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+                return [start, end];
+              }
+            },
+            {
+              text: '3 months',
+              value () {
+                const end = new Date();
+                const start = new Date();
+                start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
+                return [start, end];
+              }
+            }
+          ]
+        }
       };
     },
     props: {
