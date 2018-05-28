@@ -68,7 +68,7 @@
         this.alertList = [];
         let params = {
           "pageSize": 15,
-          "page": page || 1,
+          "pageIndex": page || 1,
           "assignToken": this.$route.query.assignToken,
           "sitewhereToken": localStorage.getItem("sitewhereToken"),
           "startDate": new Date(new Date() - 3600 * 1000 * 24 ),
@@ -92,7 +92,7 @@
       async submitForm(formData){
         let params = {
           "pageSize": 15,
-          "page": 1,
+          "pageIndex": 1,
           "assignToken": this.$route.query.assignToken,
           "sitewhereToken": localStorage.getItem("sitewhereToken"),
           "startDate": formData.time[0] ? formData.time[0] : '',

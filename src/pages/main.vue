@@ -113,18 +113,41 @@
               <Icon type="ios-navigate"></Icon>
               实时监控
             </template>
-            <MenuItem name="allDeviceList-1"><Icon type="settings"></Icon>温度监控</MenuItem>
-            <MenuItem name="allDeviceList-2"><Icon type="settings"></Icon>压力监控</MenuItem>
-            <MenuItem name="siteList-2"><Icon type="settings"></Icon>运行状态监控</MenuItem>
+            <MenuItem name="allDeviceList-1">
+              <Icon type="settings"></Icon>
+              温度监控
+            </MenuItem>
+            <MenuItem name="allDeviceList-2">
+              <Icon type="settings"></Icon>
+              压力监控
+            </MenuItem>
+            <MenuItem name="siteList-2">
+              <Icon type="settings"></Icon>
+              运行状态监控
+            </MenuItem>
           </Submenu>
           <Submenu name="2">
             <template slot="title">
               <Icon type="ios-navigate"></Icon>
-              历史数据
+              历史告警数据
             </template>
-            <MenuItem name="allDeviceList-3"><Icon type="settings"></Icon>告警统计</MenuItem>
-            <MenuItem name="allDeviceList-4"><Icon type="settings"></Icon>停用统计</MenuItem>
-            <MenuItem name="siteList-2"><Icon type="settings"></Icon>运行状态监控</MenuItem>
+            <MenuItem name="allDeviceList-3">
+              <Icon type="settings"></Icon>
+              告警统计
+            </MenuItem>
+            <MenuItem name="allDeviceList-4">
+              <Icon type="settings"></Icon>
+              故障统计
+            </MenuItem>
+            <MenuItem name="allDeviceList-5">
+              <Icon type="settings"></Icon>
+              设备告警可视化
+            </MenuItem>
+            <MenuItem name="allHistoryVersion">
+              <Icon type="settings"></Icon>
+              历史告警可视化
+            </MenuItem>
+
           </Submenu>
         </Menu>
       </Sider>
@@ -140,7 +163,7 @@
 
 
         <Content :style="{background:'#fff'}" :class="contentClasses">
-          <!--<Button @click='test'>get</Button>-->
+          <Button @click='test'>get</Button>
           <!--<Button @click='loginUser'>login</Button>-->
           <!--<Button @click='regist'>regist</Button>-->
           <!--<Button @click='getSite'>getSite</Button>-->
@@ -211,14 +234,22 @@
       },
       async test(){
         let params = {
-          "name": "loutong",
-          "pwd": 1
+//          "pageSize": 15,
+//          "pageIndex": 1,
+          "assignToken": "03e62d08-f848-4cd1-9206-459ac7992d6c",
+          "sitewhereToken": localStorage.getItem("sitewhereToken"),
+          "startDate": new Date().setFullYear(new Date().getFullYear(), 1, 1),
+          "endDate": new Date(),
+          "level": "Error",
+          "type": "engine.overheat"
         };
         let data = {
-          url: '/user/register2',
+          url: 'history/getWarnInfo',
           params: params,
-          method: 'get'
+          method: 'get',
+          baseUrl: 'alert'
         };
+
         await utils.getData(data)
 
       },
@@ -232,7 +263,7 @@
           url: '/user/login',
           params: params,
           method: 'post',
-          baseUrl:'user'
+          baseUrl: 'user'
         };
         let res = await utils.getData(data);
         if (res.userData) {
@@ -255,7 +286,7 @@
           url: '/user/regist',
           params: params,
           method: 'post',
-          baseUrl:'user'
+          baseUrl: 'user'
         };
         await utils.getData(data)
 

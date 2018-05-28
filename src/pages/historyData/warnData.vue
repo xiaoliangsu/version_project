@@ -33,7 +33,7 @@
 
   import utils from '../../utils/utils.js';
   import vForm from '@/components/vForm.vue';
-  import {warnTable,historyfilter} from '@/services/staticData/dHistory.js';
+  import {warnTable, historyfilter} from '@/services/staticData/dHistory.js';
   export default {
     data() {
       return {
@@ -47,7 +47,7 @@
         currentPage: 1,
       }
     },
-    components:{
+    components: {
       vForm,
     },
     watch: {
@@ -68,12 +68,12 @@
         this.alertList = [];
         let params = {
           "pageSize": 15,
-          "page": page || 1,
+          "pageIndex": page || 1,
           "assignToken": this.$route.query.assignToken,
           "sitewhereToken": localStorage.getItem("sitewhereToken"),
-          "startDate": new Date(new Date() - 3600 * 1000 * 24 ),
+          "startDate": new Date(new Date() - 3600 * 1000 * 24),
           "endDate": new Date(),
-          "type":'engine.overheat'
+          "type": 'engine.overheat'
         };
         let data = {
           url: 'history/getStartEndAlert',
@@ -92,12 +92,12 @@
       async submitForm(formData){
         let params = {
           "pageSize": 15,
-          "page": 1,
+          "pageIndex": 1,
           "assignToken": this.$route.query.assignToken,
           "sitewhereToken": localStorage.getItem("sitewhereToken"),
           "startDate": formData.time[0] ? formData.time[0] : '',
-          "endDate":  formData.time[1] ?  formData.time[1] : '',
-          "type":formData.type,
+          "endDate": formData.time[1] ? formData.time[1] : '',
+          "type": formData.type,
         };
         let data = {
           url: 'history/getStartEndAlert',
@@ -105,7 +105,6 @@
           method: 'get',
           baseUrl: 'alert'
         };
-
         let res = await utils.getData(data);
         this.alertList = res;
       },

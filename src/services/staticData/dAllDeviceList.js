@@ -125,6 +125,28 @@ export const deviceColumn = {
               }, '停用统计')
             ]);
             break;
+          case "5":
+            return h('div', [
+              h('Button', {
+                props: {
+                  type: 'primary',
+                  size: 'small',
+                  loading: false
+                },
+                on: {
+                  click:   () => {
+                    router.push({
+                      path: "deviceHistoryVersion",
+                      query:{
+                        "assignToken":params.row.assignToken
+                      }
+                    });
+                  }
+                }
+              }, '告警可视化')
+            ]);
+            break;
+
 
           default:
             return h('div', [
