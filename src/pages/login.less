@@ -1,0 +1,52 @@
+.func(@height, @width) {
+  .login {
+    width: @width;
+    height: @height;
+    background-image: url('https://file.iviewui.com/iview-admin/login_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    &-con {
+      position: absolute;
+      right: 160px;
+      top: 50%;
+      transform: translateY(-60%);
+      width: 300px;
+      &-header {
+        font-size: 16px;
+        font-weight: 300;
+        text-align: center;
+        padding: 30px 0;
+      }
+      .form-con {
+        padding: 10px 0 0;
+      }
+      .login-tip {
+        font-size: 10px;
+        text-align: center;
+
+      }
+    }
+  }
+
+}
+
+// 默认css
+.func(800px, 1200px);
+
+// 响应式css
+@media (max-width: 2000px) {
+  .func(1050px, 1700px);
+}
+
+@media (max-width: 1400px) {
+  .func(800px, 1400px);
+}
+
+@media (max-width: 1000px) {
+  .func(800px, 1000px);
+}
+
+
+
+

@@ -26,6 +26,7 @@
   <div class="filterForm">
     <Form ref="form"
           :rules="ruleValidate"
+          :label-width="80"
           :inline="data.inline"
           class="v-form">
 
@@ -55,7 +56,7 @@
         class="btn"
       >
         <Button :size="data.size" v-if="data.submitBtn" @click="onSubmit"
-                type="primary" class="form-btn">确认</Button>
+                type="primary" >确认</Button>
       </FormItem>
 
     </Form>

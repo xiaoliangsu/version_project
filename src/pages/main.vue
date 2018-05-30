@@ -99,7 +99,8 @@
              collapsible :collapsed-width="0" v-model="isCollapsed">
         <div class="layout-logo-left">
         </div>
-        <Menu active-name="addSite" theme="dark" width="auto" :class="menuitemClasses" @on-select="routeTo">
+        <Menu v-if="role=='tenant'" active-name="addSite" theme="dark" width="auto" :class="menuitemClasses"
+              @on-select="routeTo">
           <MenuItem name="addSite">
             <Icon type="ios-navigate"></Icon>
             <span>注册新设备</span>
@@ -150,6 +151,18 @@
 
           </Submenu>
         </Menu>
+        <Menu v-if="role=='admin'" active-name="addSite" theme="dark" width="auto" :class="menuitemClasses"
+              @on-select="routeTo">
+          <MenuItem name="tenantList">
+            <Icon type="ios-navigate"></Icon>
+            <span>成员管理</span>
+          </MenuItem>
+          <MenuItem name="userList">
+            <Icon type="ios-navigate"></Icon>
+            <span>管理员管理</span>
+          </MenuItem>
+        </Menu>
+
       </Sider>
       <Layout>
         <Header :style="{padding: 0}" :class="headClasses">
@@ -163,7 +176,7 @@
 
 
         <Content :style="{background:'#fff'}" :class="contentClasses">
-          <Button @click='test'>get</Button>
+          <!--<Button @click='test'>get</Button>-->
           <!--<Button @click='loginUser'>login</Button>-->
           <!--<Button @click='regist'>regist</Button>-->
           <!--<Button @click='getSite'>getSite</Button>-->
@@ -185,6 +198,7 @@
       return {
         isCollapsed: false,
         homeRoute: '/',
+        role: ''
       }
     },
     components: {
@@ -227,6 +241,9 @@
       }
 
     },
+    mounted(){
+      this.role = localStorage.getItem("role");
+    },
 
     methods: {
       collapsedSider () {
@@ -256,8 +273,8 @@
 
       async loginUser(){
         let params = {
-          "name": "loutong6",
-          "pwd": 123,
+          "name": "admin",
+          "pwd": 12345,
         };
         let data = {
           url: '/user/login',
@@ -266,11 +283,12 @@
           baseUrl: 'user'
         };
         let res = await utils.getData(data);
-        if (res.userData) {
-          localStorage.setItem("sitewhereToken", res.userData.tenantToken);
-          localStorage.setItem("username", res.userData.name);
-
-        }
+        console.log(res);
+//        if (res.userData) {
+//          localStorage.setItem("sitewhereToken", res.userData.tenantToken);
+//          localStorage.setItem("username", res.userData.name);
+//
+//        }
 
 
       },
