@@ -27,6 +27,8 @@ const DeviceHistoryVersion = r => require.ensure([], () => r(require('@/pages/hi
 const AllHistoryVersion = r => require.ensure([], () => r(require('@/pages/historyData/allHistoryVersion.vue')), 'AllHistoryVersion');
 const TenantList = r => require.ensure([], () => r(require('@/pages/admin/tenantList.vue')), 'TenantList');
 const UserList = r => require.ensure([], () => r(require('@/pages/admin/userList.vue')), 'UserList');
+const UserTenantList = r => require.ensure([], () => r(require('@/pages/adminUser/userTenantList.vue')), 'UserTenantList');
+const UserInfo = r => require.ensure([], () => r(require('@/pages/userInfo/userInfo.vue')), 'UserInfo');
 
 
 export const routers = [
@@ -126,6 +128,16 @@ export const routers = [
       name: 'userList',
       meta: {label: '管理员列表'},
       component: UserList,
+    },{
+      path: '/userTenantList',
+      name: 'userTenantList',
+      meta: {label: '用户列表'},
+      component: UserTenantList,
+    }, {
+      path: '/userInfo',
+      name: 'userInfo',
+      meta: {label: '个人中心'},
+      component: UserInfo,
     }, {
       path: '/test',
       name: 'test',

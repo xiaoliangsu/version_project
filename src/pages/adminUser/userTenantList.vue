@@ -47,7 +47,6 @@
 <script>
   import utils from '../../utils/utils.js';
   import vForm from "@/components/vForm"
-
   import {tenantColumn, editTenantForm} from '@/services/staticData/dTenantList';
   export default {
     data() {
@@ -86,9 +85,10 @@
         let params = {
           "pageSize": 15,
           "page": page || 1,
+          "authUserId": this.$route.query.authUserId,
         };
         let data = {
-          url: 'admin/getTenants',
+          url: 'adminUser/getUserTenants',
           params: params,
           method: 'get',
           baseUrl: 'user'

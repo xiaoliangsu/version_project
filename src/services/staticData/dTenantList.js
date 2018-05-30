@@ -75,13 +75,12 @@ export const tenantColumn = {
                   click: () => {
                     store.state.tenantList.editTenantModal = true;
                     let temp = editTenantForm.data;
-                    temp[0].defaultValue = params.row.authenticationToken;
+                    temp[0].defaultValue = params.row.id;
                     temp[1].defaultValue = params.row.name;
                     temp[2].defaultValue = params.row.authenticationToken;
                     temp[3].defaultValue = params.row.logoUrl;
                     temp[4].defaultValue = params.row.authorizedUserIds;
                     temp[4].data.params.sitewhereToken = params.row.authenticationToken;
-
 
                   }
                 }
@@ -193,13 +192,13 @@ export const editTenantForm = {
     type: 'Select',
     name: 'authorizedUserIds',
     label: '管理员',
-    multiple:true,
+    multiple: true,
     data: {
       url: '/admin/getTenantAdminUsers',
       params: {"sitewhereToken": ''},
       method: 'get',
-      baseUrl:'user'
+      baseUrl: 'user'
     },
-    defaultValue:''
+    defaultValue: ''
   }]
 };

@@ -61,7 +61,7 @@
         form: {
           userName: '',
           password: '',
-          role:'tenant'
+          role: 'tenant'
         },
         name: '',
         pwd: '',
@@ -84,7 +84,7 @@
             let params = {
               "name": this.form.userName,
               "pwd": this.form.password,
-              "role":this.form.role,
+              "role": this.form.role,
             };
             let data = {
               url: '/user/login',
@@ -98,19 +98,24 @@
               localStorage.setItem("username", res.userData.name);
               localStorage.setItem("role", "tenant");
               this.$router.push({
-                path: '/',
-                query: {
-                  "role": 'tenant',
-                }
+                path: '/addSite',
               });
             } else if (res.status == 3) {
               localStorage.setItem("role", "admin");
+              localStorage.setItem("username", res.userData.name);
               this.$router.push({
-                path: '/',
+                path: '/tenantList',
+              });
+            } else if (res.status == 4) {
+              localStorage.setItem("role", "adminUser");
+              localStorage.setItem("username", res.userData.name);
+              this.$router.push({
+                path: '/userTenantList',
                 query: {
-                  "role": 'admin',
+                  "authUserId": res.userData.name,
                 }
               });
+
             } else {
               Message.error({
                 content: res.msg,

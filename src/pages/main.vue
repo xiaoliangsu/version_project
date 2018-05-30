@@ -162,6 +162,14 @@
             <span>管理员管理</span>
           </MenuItem>
         </Menu>
+        <Menu v-if="role=='adminUser'" active-name="addSite" theme="dark" width="auto" :class="menuitemClasses"
+              @on-select="routeTo">
+          <MenuItem name="userTenantList">
+            <Icon type="ios-navigate"></Icon>
+            <span>成员管理</span>
+          </MenuItem>
+
+        </Menu>
 
       </Sider>
       <Layout>
