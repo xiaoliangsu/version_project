@@ -67,7 +67,7 @@
   import util from '../utils/utils.js';
   let Input = {
     props: ['allProps', 'value'],
-    template: '<Input :size="allProps.size" placeholder="请输入内容..." v-model="value[allProps.name]"> </Input>'
+    template: '<Input :size="allProps.size" placeholder="请输入内容..." v-model="value[allProps.name]" :disabled="allProps.disabled"> </Input>'
   };
 
   let DatePicker = {

@@ -29,6 +29,7 @@ const TenantList = r => require.ensure([], () => r(require('@/pages/admin/tenant
 const UserList = r => require.ensure([], () => r(require('@/pages/admin/userList.vue')), 'UserList');
 const UserTenantList = r => require.ensure([], () => r(require('@/pages/adminUser/userTenantList.vue')), 'UserTenantList');
 const UserInfo = r => require.ensure([], () => r(require('@/pages/userInfo/userInfo.vue')), 'UserInfo');
+const EventSource = r => require.ensure([], () => r(require('@/pages/eventSource/eventSource.vue')), 'EventSource');
 
 
 export const routers = [
@@ -138,6 +139,11 @@ export const routers = [
       name: 'userInfo',
       meta: {label: '个人中心'},
       component: UserInfo,
+    }, {
+      path: '/eventSource',
+      name: 'eventSource',
+      meta: {label: '传输协议'},
+      component: EventSource,
     }, {
       path: '/test',
       name: 'test',

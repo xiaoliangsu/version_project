@@ -141,7 +141,7 @@
               故障统计
             </MenuItem>
             <MenuItem name="allDeviceList-5">
-              <Icon type="settings"></Icon>
+              <Icon type="ios-navigate"></Icon>
               设备告警可视化
             </MenuItem>
             <MenuItem name="allHistoryVersion">
@@ -149,7 +149,12 @@
               历史告警可视化
             </MenuItem>
 
+
           </Submenu>
+          <MenuItem name="eventSource">
+            <Icon type="settings"></Icon>
+            <span>传输协议配置</span>
+          </MenuItem>
         </Menu>
         <Menu v-if="role=='admin'" active-name="addSite" theme="dark" width="auto" :class="menuitemClasses"
               @on-select="routeTo">
