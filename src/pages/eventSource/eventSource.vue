@@ -153,18 +153,6 @@
 
     }
   };
-  //         let params = {
-  //   "eventDate" : "2016-12-10T13:11:45.122-0500",
-  //   "updateState" : false,
-  //   "initiator" : "REST",
-  //   "initiatorId" : "admin",
-  //   "target" : "Assignment",
-  //   "commandToken" : "abf39265-b38e-487a-845d-6c6764dab1e4",
-  //   "parameterValues" : {
-  //     "p1" : "stri",
-  //     "p2" : "60"
-  //   }
-  // };
-  //         console.log(params)
+
 
 </script>

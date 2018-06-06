@@ -35,7 +35,7 @@ export const cityMap = {
       left:'left',
       top:'top',
       zlevel:100,
-      data: ['Running','Warning','Error'],
+      data: ['Running','Warning','Error',"Stop"],
       textStyle: {
         color: '#fff'
       }
@@ -222,6 +222,39 @@ export const cityMap = {
         itemStyle: {
           normal: {
             color: 'red',
+            shadowBlur: 30,
+          }
+        }
+      },
+      {
+        name: 'Stop',
+        type: 'effectScatter',
+        hoverAnimation: 'false',
+        coordinateSystem: 'geo',
+        data: [],
+        symbolSize: 10,
+        label: {
+          normal: {
+            formatter: '{b}',
+            position: 'right',
+            show: true,
+            color:'#ddb926',
+            fontStyle:'italic',
+            fontWeight:'800',
+            fontSize: 15,
+          },
+          emphasis: {
+            show: true
+          }
+        },
+        rippleEffect: {
+          period: 15,
+          scale: 4,
+          brushType: 'fill',
+        },
+        itemStyle: {
+          normal: {
+            color: '#7bbf88',
             shadowBlur: 30,
           }
         }

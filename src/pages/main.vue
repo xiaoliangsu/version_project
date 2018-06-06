@@ -155,6 +155,10 @@
             <Icon type="settings"></Icon>
             <span>传输协议配置</span>
           </MenuItem>
+          <MenuItem name="allDeviceList-6">
+            <Icon type="settings"></Icon>
+            <span>控制设备运行</span>
+          </MenuItem>
         </Menu>
         <Menu v-if="role=='admin'" active-name="addSite" theme="dark" width="auto" :class="menuitemClasses"
               @on-select="routeTo">
@@ -264,20 +268,22 @@
       },
       async test(){
         let params = {
-//          "pageSize": 15,
-//          "pageIndex": 1,
-          "assignToken": "03e62d08-f848-4cd1-9206-459ac7992d6c",
-          "sitewhereToken": localStorage.getItem("sitewhereToken"),
-          "startDate": new Date().setFullYear(new Date().getFullYear(), 1, 1),
-          "endDate": new Date(),
-          "level": "Error",
-          "type": "engine.overheat"
+          "eventDate": "2016-12-10T13:11:45.122-0500",
+          "updateState": false,
+          "initiator": "REST",
+          "initiatorId": "admin",
+          "target": "Assignment",
+          "commandToken": "83912da9-9cef-4c28-803c-4bbaa6506aa2",
+          "parameterValues": {
+            "p1": "stri",
+            "p2": "60"
+          }
         };
+        console.log(params)
         let data = {
-          url: 'history/getWarnInfo',
+          url: 'eventSource/postCommond',
           params: params,
-          method: 'get',
-          baseUrl: 'alert'
+          method: 'post',
         };
 
         await utils.getData(data)

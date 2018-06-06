@@ -58,10 +58,25 @@
 //        this.cityMap.option.series.forEach((item) => {
 //          item.data = this.data;
 //        })
-        this.cityMap.option.series[0].data = this.data;
+        console.log(this.data);
+        let runData = [];
+        let stopData = [];
+        this.data.forEach((item)=>{
+            if(item.value[3]!=='已停用'){
+                runData.push(item);
+            }else{
+                stopData.push(item);
+
+            }
+
+        })
+        this.cityMap.option.series[0].data = runData;
+        this.cityMap.option.series[4].data = stopData;
+
         this.cityMap.option.series[1].data = this.data;
 
         this.cityMap.option.series[1].map = cityName;
+
 
         this.cityMap.option.geo.map = cityName;
         this.cityMap.cityName = cityName;
@@ -102,6 +117,7 @@
           val.push(item.centerLatitude);
           this.storeDeviceLoc.set(item.assignToken, val);
           val.push(item.hardwareId);
+          val.push(item.comments);
           this.data.push({
             "name": "设备id：" + item.hardwareId,
             "value": val,

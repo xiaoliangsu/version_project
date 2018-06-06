@@ -13,6 +13,11 @@
           <Select v-model="chooseSite" style="width:200px" clearable>
             <Option v-for="item in siteList" :value="item.value" :key="item.value">{{ item.label }}</Option>
           </Select>
+          <label>设备状态：</label>
+          <Select v-model="chooseState" style="width:200px" clearable>
+            <Option v-for="item in stateList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+          </Select>
+
           <span @click="getData(1)" style="margin: 0 10px;"><Button type="primary" icon="search">搜索</Button></span>
         </Row>
         <Row class="margin-top-10">
@@ -47,6 +52,14 @@
         loading: true,
         total: 0,
         currentPage: 1,
+        chooseState:'',
+        stateList:[{
+            "label":"已停用",
+          "value":"true",
+        },{
+          "label":"运行中",
+          "value":"false",
+        }]
       }
     },
     watch: {
@@ -55,6 +68,7 @@
         if (this.$route.path == '/allDeviceList') {
           this.getData();
           this.getFilterData();
+          this.$store.state["allDeviceList"] = this;
         }
       }
     },
@@ -62,19 +76,21 @@
     mounted() {
       this.getData();
       this.getFilterData();
+      this.$store.state["allDeviceList"] = this;
+
 
     },
     methods: {
       async getData(page){
-        console.log(page);
-        this.loading = false;
+        this.loading = true;
         this.deviceList = [];
 
         let params = {
           "pageSize": 15,
           "page": page || 1,
           "siteToken": this.chooseSite,
-          "sitewhereToken": localStorage.getItem("sitewhereToken")
+          "sitewhereToken": localStorage.getItem("sitewhereToken"),
+          "deleted":this.chooseState,
 
         };
         let data = {
@@ -88,11 +104,58 @@
         let res = await utils.getData(data);
         this.total = res.numResults;
         let result = res.data ? res.data : res.results;
+        switch(this.chooseState)
+        {
+          case "true":
+            result.forEach((item) => {
+                if(item.comments == "已停用"){
+                  this.deviceList.push({
+                    "hardwareId": item.hardwareId,
+                    "assetName": item.specification.assetName,
+                    "locationCity": item.metadata.locationCity,
+                    "locationDetial": item.metadata.locationDetial,
+                    "name": item.assignment.assetName,
+                    "id": item.assignment.assetId,
+                    "emailAddress": item.assignment.emailAddress,
+                    "siteToken": item.siteToken,
+                    "metadata": item.metadata,
+                    "assignToken": item.assignment.token,
+                    "deleted":item.comments=="已停用"?"已停用":"运行中",
+                    "specToken":item.specification.token
+                  });
+                }
+            });
+            break;
+          case "false":
+            result.forEach((item) => {
+              if(item.comments !== "已停用"){
+                this.deviceList.push({
+                  "hardwareId": item.hardwareId,
+                  "assetName": item.specification.assetName,
+                  "locationCity": item.metadata.locationCity,
+                  "locationDetial": item.metadata.locationDetial,
+                  "name": item.assignment.assetName,
+                  "id": item.assignment.assetId,
+                  "emailAddress": item.assignment.emailAddress,
+                  "siteToken": item.siteToken,
+                  "metadata": item.metadata,
+                  "assignToken": item.assignment.token,
+                  "deleted":item.comments=="已停用"?"已停用":"运行中",
+                  "specToken":item.specification.token
+                });
+              }
+            });
+            break;
+          default:
+            this.makeTabeltable(result);
+        }
+        this.loading = false;
+      },
+      makeTabeltable(result){
         result.forEach((item) => {
           this.deviceList.push({
             "hardwareId": item.hardwareId,
             "assetName": item.specification.assetName,
-            "comments": item.comments,
             "locationCity": item.metadata.locationCity,
             "locationDetial": item.metadata.locationDetial,
             "name": item.assignment.assetName,
@@ -100,10 +163,12 @@
             "emailAddress": item.assignment.emailAddress,
             "siteToken": item.siteToken,
             "metadata": item.metadata,
-            "assignToken": item.assignment.token
+            "assignToken": item.assignment.token,
+            "deleted":item.comments=="已停用"?"已停用":"运行中",
+            "specToken":item.specification.token
           });
         });
-        this.loading = false;
+
       },
       async getFilterData(){
         this.siteList = [];
