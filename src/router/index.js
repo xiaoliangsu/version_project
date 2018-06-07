@@ -30,6 +30,7 @@ const UserList = r => require.ensure([], () => r(require('@/pages/admin/userList
 const UserTenantList = r => require.ensure([], () => r(require('@/pages/adminUser/userTenantList.vue')), 'UserTenantList');
 const UserInfo = r => require.ensure([], () => r(require('@/pages/userInfo/userInfo.vue')), 'UserInfo');
 const EventSource = r => require.ensure([], () => r(require('@/pages/eventSource/eventSource.vue')), 'EventSource');
+const EthAlertList = r => require.ensure([], () => r(require('@/pages/historyData/ethAlertList.vue')), 'EthAlertList');
 
 
 export const routers = [
@@ -144,6 +145,11 @@ export const routers = [
       name: 'eventSource',
       meta: {label: '传输协议'},
       component: EventSource,
+    }, {
+      path: '/ethAlertList',
+      name: 'ethAlertList',
+      meta: {label: '区块链存储'},
+      component: EthAlertList,
     }, {
       path: '/test',
       name: 'test',

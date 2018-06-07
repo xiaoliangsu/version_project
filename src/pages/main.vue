@@ -148,6 +148,10 @@
               <Icon type="settings"></Icon>
               历史告警可视化
             </MenuItem>
+            <MenuItem name="ethAlertList">
+              <Icon type="settings"></Icon>
+              区块链存储
+            </MenuItem>
 
 
           </Submenu>
@@ -193,7 +197,7 @@
 
 
         <Content :style="{background:'#fff'}" :class="contentClasses">
-          <!--<Button @click='test'>get</Button>-->
+          <Button @click='test'>get</Button>
           <!--<Button @click='loginUser'>login</Button>-->
           <!--<Button @click='regist'>regist</Button>-->
           <!--<Button @click='getSite'>getSite</Button>-->
@@ -268,22 +272,14 @@
       },
       async test(){
         let params = {
-          "eventDate": "2016-12-10T13:11:45.122-0500",
-          "updateState": false,
-          "initiator": "REST",
-          "initiatorId": "admin",
-          "target": "Assignment",
-          "commandToken": "83912da9-9cef-4c28-803c-4bbaa6506aa2",
-          "parameterValues": {
-            "p1": "stri",
-            "p2": "60"
-          }
+          "hardwareId": "hard1"
         };
-        console.log(params)
+
         let data = {
-          url: 'eventSource/postCommond',
+          url: 'products',
           params: params,
-          method: 'post',
+          method: 'get',
+          baseUrl:'eth'
         };
 
         await utils.getData(data)

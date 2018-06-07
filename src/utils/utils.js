@@ -13,13 +13,14 @@ let baseUrls = {
   "alert":"http://localhost:8006",
   "realTime":"http://localhost:8007",
   "user":"http://localhost:8005",
+  "eth":"http://localhost:8099"
 
 }
 
 //axios默认设置
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 // axios.defaults.baseURL = '/admin';
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
 axios.defaults.baseURL= 'http://localhost:8004';
 
 
@@ -75,7 +76,7 @@ util.getData = function (data) {
         timeout: 10000,
       }).then(
         (response) => {
-          if (parseInt(response.status) === 200) {
+          if (parseInt(response.status) === 200 || data.baseUrl=='eth') {
             return response.data;
           } else {
             Message.error({
@@ -87,12 +88,12 @@ util.getData = function (data) {
           }
         }
       ).catch(function (response) {
-        console.log(111);
-        Message.error({
-          content: response.message,
-          duration: 5,
-          closable: true
-        });
+        console.log(response);
+        // Message.error({
+        //   content: response.message,
+        //   duration: 5,
+        //   closable: true
+        // });
       });
     } else {
       return axios({
@@ -105,9 +106,9 @@ util.getData = function (data) {
         // }
       }).then(
         (response) => {
-          if (parseInt(response.status) === 200) {
+          if (parseInt(response.status) === 200 || data.baseUrl=='eth') {
             return response.data;
-          } else {
+          } else{
             Message.error({
               content: response.data.msg,
               duration: 5,
