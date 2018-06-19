@@ -82,13 +82,23 @@ export const siteTable = {
                 click: () => {
                   localStorage.setItem("siteToken", params.row.token)
                   if (localStorage.getItem("siteToken")) {
+                    let locationCity = '';
+                    if (params.row.locationCity.split(',').length == 1) {
+                      locationCity = params.row.locationCity.split(',')[0];
+                    } else {
+                      if (params.row.locationCity.split(',')[1] !== "市辖区") {
+                        locationCity = params.row.locationCity.split(',')[1];
+                      } else {
+                        locationCity = params.row.locationCity.split(',')[0];
+                      }
+                    }
                     router.push({
                       path: "runStatus",
                       query: {
                         "lng": params.row.map.metadata.centerLongitude,
                         "lat": params.row.map.metadata.centerLatitude,
                         "siteToken": params.row.token,
-                        "city":params.row.locationCity
+                        "city": locationCity
                       }
                     });
                   }

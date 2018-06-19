@@ -71,7 +71,7 @@
 
         })
         this.cityMap.option.series[0].data = runData;
-        this.cityMap.option.series[4].data = stopData;
+        this.cityMap.option.series[2].data = stopData;
 
         this.cityMap.option.series[1].data = this.data;
 
@@ -171,9 +171,9 @@
             })
           }
         });
-        this.cityMap.option.series[2].data = this.warnList;
+        this.cityMap.option.series[3].data = this.warnList;
         this.warnList = [];
-        this.cityMap.option.series[3].data = this.ErrorList;
+        this.cityMap.option.series[4].data = this.ErrorList;
         this.ErrorList = [];
       },
       pushTo(params){

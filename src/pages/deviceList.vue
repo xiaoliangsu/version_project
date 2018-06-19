@@ -28,11 +28,13 @@
       '$route.query': function () {
         if (this.$route.path == '/deviceList') {
           this.init();
+          this.$store.state["deviceList"] = this;
         }
       }
     },
     mounted() {
       this.init();
+      this.$store.state["deviceList"] = this;
     },
     methods: {
       init(){

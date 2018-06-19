@@ -22,7 +22,22 @@
           title="提交站点信息"
           @on-ok="getNewSite"
         >
-          <v-Form :data='addSiteForm' @onSubmit='submitSiteForm'/>
+          <!--<v-Form :data='addSiteForm' @onSubmit='submitSiteForm'/>-->
+          <Form :model="formItem" :label-width="80">
+            <FormItem label="站点名称">
+              <Input v-model="formItem.name" placeholder="Enter something..."></Input>
+            </FormItem>
+            <FormItem label="站点省市">
+              <al-selector v-model="formItem.city" level="1"/>
+            </FormItem>
+            <FormItem label="站点详细地址">
+              <Input v-model="formItem.location" placeholder="Enter something..."></Input>
+            </FormItem>
+            <FormItem label="站点描述">
+              <Input v-model="formItem.description" placeholder="Enter something..."></Input>
+            </FormItem>
+            <Button type="primary" @click='submitSiteForm(formItem)'>确认</Button>
+          </Form>
 
         </Modal>
 
@@ -32,6 +47,8 @@
 </template>
 <script>
   //  import moment from 'moment';
+  import alSelector from '@/components/al-selector.vue';
+
   import utils from '@/utils/utils.js';
   import vTable from '@/components/vTable.vue';
   import vForm from '@/components/vForm.vue';
@@ -42,12 +59,19 @@
         siteTable,
         loading: false,
         addSiteModal: false,
-        addSiteForm
+        addSiteForm,
+        showRes: [],
+        formItem: {
+          name: '',
+          city: []
+
+        }
       }
     },
     components: {
       vTable,
-      vForm
+      vForm,
+      alSelector
     },
     watch: {
       '$route'(to, from){
@@ -55,7 +79,11 @@
           this.init();
 
         }
-      }
+      },
+      city (val) {
+        this.showRes = val;
+
+      },
     },
     mounted() {
       this.init();
@@ -66,10 +94,10 @@
         this.loading = true;
         this.$refs.siteTable.tableSearch(search);
       },
-      submitSiteForm(formData){
+      submitSiteForm(formItem){
         let params = {
-          "name": formData.name,
-          "description": formData.description,
+          "name": formItem.name,
+          "description": formItem.description,
           "map": {
             "type": "mapquest",
             "metadata": {
@@ -80,14 +108,14 @@
           },
           "sitewhereToken": localStorage.getItem("sitewhereToken"),
           "metadata": {
-            "locationCity": formData.city,
-            "locationDetial": formData.location
+            "locationCity": formItem.city[0].name + "," + formItem.city[1].name,
+            "locationDetial": formItem.location
           }
         };
-        if (formData.location !== '') {
+        if (formItem.location !== '') {
           let myGeo = new BMap.Geocoder();
           // 地址转换成坐标系
-          myGeo.getPoint(formData.location, async function (point) {
+          myGeo.getPoint(formItem.location, async function (point) {
             if (point) {
               params.map.metadata.centerLatitude = point.lat + '';
               params.map.metadata.centerLongitude = point.lng + '';
@@ -101,12 +129,12 @@
               this.loading = true;
               this.$refs.siteTable.tableSearch(search);
             }
-          }, formData.city);
+          }, formItem.city[0].name);
         }
         this.init();
       },
       getNewSite(){
-          this.init();
+        this.init();
 
       }
 

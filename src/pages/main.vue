@@ -197,7 +197,7 @@
 
 
         <Content :style="{background:'#fff'}" :class="contentClasses">
-          <Button @click='test'>get</Button>
+          <!--<Button @click='test'>get</Button>-->
           <!--<Button @click='loginUser'>login</Button>-->
           <!--<Button @click='regist'>regist</Button>-->
           <!--<Button @click='getSite'>getSite</Button>-->

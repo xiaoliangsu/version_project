@@ -94,7 +94,7 @@
             if (self && !self._isDestroyed) {
               self.getRealData();
             }
-          }, 30000);
+          }, 20000);
         }
       },
       //改变数据格式

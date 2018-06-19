@@ -26,60 +26,6 @@ export const warnTable = {
     'minWidth': 300
   },
 
-    {
-      'title': '操作',
-      'key': 'action',
-      'width': 200,
-      render: (h, params) => {
-        switch(router.history.current.query.kind)
-        {
-          case "1":
-            return h('div', [
-              h('Button', {
-                props: {
-                  type: 'primary',
-                  size: 'small',
-                  loading: false
-                },
-                on: {
-                  click:   () => {
-                    router.push({
-                      path: "deviceTemper",
-                      query:{
-                        "token":params.row.assignToken
-                      }
-                    });
-                  }
-                }
-              }, '温度监控')
-            ]);
-            break;
-
-          default:
-            return h('div', [
-              h('Button', {
-                props: {
-                  type: 'primary',
-                  size: 'small',
-                  loading: false
-                },
-                on: {
-                  click:   () => {
-                    router.push({
-                      path: "devicePa",
-                      query:{
-                        "token":params.row.assignToken
-                      }
-                    });
-                  }
-                }
-              }, '压力监控')
-            ]);
-        }
-
-
-      }
-    }
   ],
 }
 

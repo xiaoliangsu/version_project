@@ -22,10 +22,13 @@
       return {
         siteTable,
         loading: false,
+
       }
     },
+
     components: {
       vTable,
+
     },
     watch: {
       '$route'(to, from){
@@ -33,14 +36,15 @@
           this.init();
 
         }
-      }
+      },
+
     },
     mounted() {
       this.init();
     },
     methods: {
       init(){
-        let search ={"siteToken":this.$route.query.siteToken} ;
+        let search = {"siteToken": this.$route.query.siteToken};
         this.loading = true;
         this.$refs.siteTable.tableSearch(search);
       },

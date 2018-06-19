@@ -6,6 +6,7 @@
 </style>
 <template>
   <div>
+    <Spin fix v-if="spinShow"></Spin>
 
     <div class="row" style="margin-bottom:20px;">
       <div class="col-12 col-md-7">
@@ -66,6 +67,7 @@
         errorPie,
         warnErrorPie,
         flag: false,
+        spinShow:true,
       }
     },
 
@@ -93,6 +95,7 @@
         ]);
 
         this.flag = true;
+        this.spinShow = false;
       },
       async getClassfyData(){
         let params = {

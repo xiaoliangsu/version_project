@@ -6,7 +6,9 @@
 </style>
 <template>
   <div>
+    <Spin fix v-if="spinShow"></Spin>
     <div class="row" style="margin-bottom:20px;">
+
       <div class="col-12 col-md-7">
         <Card>
           <v-bar-chart :data=classfyChart v-if="flag" ref="classfyChart"></v-bar-chart>
@@ -77,6 +79,7 @@
         classfyPie,
         warnErrorPie,
         flag: false,
+        spinShow:true,
       }
     },
 
@@ -104,6 +107,7 @@
         ]);
 
         this.flag = true;
+        this.spinShow = false;
       },
       async getClassfyData(){
         let params = {

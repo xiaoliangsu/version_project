@@ -108,6 +108,7 @@ export const cityMap = {
           }
         }
       },
+
       {
         type: 'map',
         map: '',
@@ -142,6 +143,39 @@ export const cityMap = {
 
         },
         data: []
+      },
+      {
+        name: 'Stop',
+        type: 'effectScatter',
+        hoverAnimation: 'false',
+        coordinateSystem: 'geo',
+        data: [],
+        symbolSize: 10,
+        label: {
+          normal: {
+            formatter: '{b}',
+            position: 'right',
+            show: true,
+            color:'#ddb926',
+            fontStyle:'italic',
+            fontWeight:'800',
+            fontSize: 15,
+          },
+          emphasis: {
+            show: true
+          }
+        },
+        rippleEffect: {
+          period: 15,
+          scale: 4,
+          brushType: 'fill',
+        },
+        itemStyle: {
+          normal: {
+            color: '#7bbf88',
+            shadowBlur: 30,
+          }
+        }
       },
       {
         name: 'Warning',
@@ -226,39 +260,7 @@ export const cityMap = {
           }
         }
       },
-      {
-        name: 'Stop',
-        type: 'effectScatter',
-        hoverAnimation: 'false',
-        coordinateSystem: 'geo',
-        data: [],
-        symbolSize: 10,
-        label: {
-          normal: {
-            formatter: '{b}',
-            position: 'right',
-            show: true,
-            color:'#ddb926',
-            fontStyle:'italic',
-            fontWeight:'800',
-            fontSize: 15,
-          },
-          emphasis: {
-            show: true
-          }
-        },
-        rippleEffect: {
-          period: 15,
-          scale: 4,
-          brushType: 'fill',
-        },
-        itemStyle: {
-          normal: {
-            color: '#7bbf88',
-            shadowBlur: 30,
-          }
-        }
-      },
+
 
     ]
   }

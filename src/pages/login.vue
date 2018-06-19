@@ -59,8 +59,8 @@
     data () {
       return {
         form: {
-          userName: '',
-          password: '',
+          userName: localStorage.getItem("username")?localStorage.getItem("username"):'',
+          password: localStorage.getItem("password")?localStorage.getItem("password"):'',
           role: 'tenant'
         },
         name: '',

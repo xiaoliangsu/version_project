@@ -2,6 +2,8 @@
 import utils from '../../utils/utils.js';
 import store from '../../store/';
 import router from '../../main.js';
+
+
 export const siteTable = {
   name: 'siteTable',
   size: 'small',
@@ -119,9 +121,9 @@ export const addSiteForm = {
     name: 'name',
     label: '站点名称'
   }, {
-    type: 'Input',
+    type: 'Celector',
     name: 'city',
-    label: '站点城市'
+    label: '站点省市'
   }, {
     type: 'Input',
     name: 'location',
@@ -160,7 +162,7 @@ export const addDeviceForm = {
     {
       type: "Input",
       name: "city",
-      label: "所在城市",
+      label: "所在省市",
     },
     {
       type: "Input",
@@ -251,14 +253,51 @@ export const deviceTable = {
               click: async () => {
                 router.push({
                   path: "deviceDetail",
-                  query:{
-                    "hardwareId":params.row.hardwareId
+                  query: {
+                    "hardwareId": params.row.hardwareId
                   }
                 });
               }
             }
-          }, '设备详情')
+          }, '设备详情'),
+          h('Poptip', {
+            props: {
+              confirm: true,
+              title: '您确定要删除这条数据吗?',
+              transfer: true
+            },
+            on: {
+              'on-ok': async () => {
+                let p1 = {
+                  "assignToken": params.row.assignToken,
+                  "sitewhereToken": localStorage.getItem("sitewhereToken"),
+                  "deviceId": params.row.hardwareId,
+                };
+                let data = {
+                  url: '/device/deleteDevice',
+                  params: p1,
+                  method: 'get',
+                  baseUrl: "device"
+                };
+                await utils.getData(data)
+                store.state.deviceList.init();
+              }
+            }
+          }, [
+            h('Button', {
+              props: {
+                type: 'error',
+                size: 'small',
+                loading: false,
+              },
+
+              style: {
+                marginLeft: '5px'
+              },
+            }, '删除设备')])
         ]);
+
+
       }
     }
   ],
@@ -276,4 +315,5 @@ export const deviceTable = {
     method: "get"
   }
 };
+
 
